@@ -1,13 +1,37 @@
 object Gates:
 
-  private def normalize(s1: String, s2: String): List[String] =
-    val sortedByLength: List[String] = List(s1, s2).sortBy(_.length)
+  def pad(i: String): String =
+    var op: String = i
 
-    var short: String = sortedByLength.head
-    val long: String = sortedByLength.last
-    
-    while(short.length < long.length) {
-      short = "0" + short
+    while (op.length < 16) {
+      op = "0" + op
     }
-    
-    List(short, long)
+
+    op
+
+  def not(op: String): String =
+    op.map((bit: Char) => if bit == '1' then '0' else '1')
+
+  def shiftRight(op: String, offset: Int): String =
+    "0".repeat(offset) + op.substring(0, op.length - offset)
+
+  def shiftLeft(op: String, offset: Int): String =
+    op.substring(offset, op.length) + "0".repeat(offset)
+
+  def or(op1: String, op2: String): String =
+    var result: String = ""
+
+    for(i <- 0 to 15) {
+      result = result + (if op1.charAt(i) == '1' || op2.charAt(i) == '1' then '1' else '0')
+    }
+
+    result
+
+  def and(op1: String, op2: String): String =
+    var result: String = ""
+
+    for (i <- 0 to 15) {
+      result = result + (if op1.charAt(i) == '1' && op2.charAt(i) == '1' then '1' else '0')
+    }
+
+    result

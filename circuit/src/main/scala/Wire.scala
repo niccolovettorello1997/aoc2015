@@ -1,7 +1,7 @@
 class Wire(name: Char):
 
   private var value: String = ""
-
+    
   def getName: Char =
     name
     
@@ -12,4 +12,4 @@ class Wire(name: Char):
     value
 
   def setValue(value: Int): Unit =
-    this.value = value.toBinaryString
+    this.value = Gates.pad(value.toBinaryString)
