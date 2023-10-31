@@ -6,6 +6,14 @@ class WireTest extends AnyFunSuite:
     
     assert(wire.getName == 'a')
   }
+
+  test("Wire.getRawValue") {
+    val wire: Wire = Wire('a')
+
+    wire.setValue(123)
+
+    assert(wire.getRawValue == "1111011")
+  }
   
   test("Wire internal representation") {
     val wire: Wire = Wire('a')

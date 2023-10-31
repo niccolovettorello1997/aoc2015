@@ -7,6 +7,9 @@ class Wire(name: Char):
     
   def getValue: Int =
     Integer.parseInt(value, 2)
+    
+  def getRawValue: String =
+    value
 
   def setValue(value: Int): Unit =
     this.value = value.toBinaryString
