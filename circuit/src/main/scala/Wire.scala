@@ -9,7 +9,10 @@ class Wire(name: Char):
     Integer.parseInt(value, 2)
     
   def getRawValue: String =
-    value
+    Gates.pad(value)
 
   def setValue(value: Int): Unit =
     this.value = Gates.pad(value.toBinaryString)
+    
+  def setRawValue(value: String): Unit =
+    this.value = Gates.pad(value)
