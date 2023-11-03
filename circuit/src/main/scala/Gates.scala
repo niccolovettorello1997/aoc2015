@@ -21,7 +21,7 @@ object Gates:
   def or(op1: String, op2: String): String =
     var result: String = ""
 
-    for(i <- 0 to 15) {
+    for (i <- 0 to 15) {
       result = result + (if op1.charAt(i) == '1' || op2.charAt(i) == '1' then '1' else '0')
     }
 

@@ -47,7 +47,7 @@ class CircuitParser(path: String):
   private def tokenize(rawInstruction: String): List[String] =
     rawInstruction.split(" ").toList
 
-  private def parseRawInstruction(rawInstruction: String): Runnable=
+  private def parseRawInstruction(rawInstruction: String): Runnable =
     val tokens: List[String] = tokenize(rawInstruction)
 
     tokens.length match
@@ -58,11 +58,11 @@ class CircuitParser(path: String):
   def getWire(name: Char): Wire =
     wires(name)
 
-  def parse: List[Runnable] =
+  def dispatch(): Unit =
     val source: BufferedSource = Source.fromFile(path)
 
     val rawInstructions: List[String] = source.getLines().toList
 
     source.close()
 
-    rawInstructions.map((rawInstruction: String) => parseRawInstruction(rawInstruction))
+    rawInstructions.foreach((rawInstruction: String) => parseRawInstruction(rawInstruction).run())
